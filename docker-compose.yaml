@@ -12,8 +12,8 @@ services:
       - PIPELESS_OUTPUT_ADDRESS_HOST=stream
       - PIPELESS_OUTPUT_ADDRESS_PORT=3031
     volumes:
-      - './input/:/input/demo-video-cafe-output.mp4'
-      - './output/:/output/demo-video-cafe-output.mp4'
+      - './input/:/input/'
+      - './output/:/output/'
     runtime: nvidia
     devices:
       - /dev/snd:/dev/snd
