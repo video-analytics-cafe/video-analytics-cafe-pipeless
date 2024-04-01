@@ -8,11 +8,11 @@ RUN pip3 install -r requirements.txt
 
 #COPY ./onnx-yolo onnx-yolo
 COPY ./yolo yolo
-COPY ./object-tracking object-tracking
-COPY ./test.py test.py
+#COPY ./object-tracking object-tracking
+#COPY ./test.py test.py
 
 ENV RUST_BACKTRACE=1
 ENV PIPELESS_USER_PYTHON_PACKAGES=opencv-python;numpy;ultralytics;norfair
 
-#CMD ["pipeless", "start", "--stages-dir", "."]
-CMD ["python", "test.py"]
+CMD ["pipeless", "start", "--stages-dir", "."]
+#CMD ["python", "test.py"]
