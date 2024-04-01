@@ -6,8 +6,13 @@ services:
       context: .
       dockerfile: Dockerfile
     command: pipeless add stream --input-uri "file:///output/demo-video-cafe-output.mp4" --output-uri "file:///output/demo-video-cafe-output.mp4" --frame-path "onnx-yolo"
-#    ports:
-#       - "3030:3030"
+    ports:
+       - "3031:3031"
+    environment:
+      - PIPELESS_INPUT_ADDRESS_HOST=worker
+      - PIPELESS_INPUT_ADDRESS_PORT=3030
+      - PIPELESS_OUTPUT_ADDRESS_HOST=stream
+      - PIPELESS_OUTPUT_ADDRESS_PORT=3031
     volumes:
       - './input/:/input/demo-video-cafe-output.mp4'
       - './output/:/output/demo-video-cafe-output.mp4'
@@ -32,6 +37,11 @@ services:
     command: pipeless start --stages-dir .
     ports:
       - "3030:3030"
+    environment:
+      - PIPELESS_INPUT_ADDRESS_HOST=worker
+      - PIPELESS_INPUT_ADDRESS_PORT=3030
+      - PIPELESS_OUTPUT_ADDRESS_HOST=stream
+      - PIPELESS_OUTPUT_ADDRESS_PORT=3031
     volumes:
       - './input/:/input/demo-video-cafe-output.mp4'
       - './output/:/output/demo-video-cafe-output.mp4'
