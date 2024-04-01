@@ -12,4 +12,4 @@ COPY ./object-tracking object-tracking
 ENV RUST_BACKTRACE=1
 ENV PIPELESS_USER_PYTHON_PACKAGES="opencv-python;numpy;ultralytics;norfair"
 
-CMD ["pipeless", "start", "--stages-dir", "."]
+CMD ["PIPELESS_USER_PYTHON_PACKAGES=\"opencv-python;numpy;ultralytics;norfair\"", "pipeless", "start", "--stages-dir", "."]
