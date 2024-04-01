@@ -45,6 +45,7 @@ COPY ./requirements.txt requirements.txt
 
 RUN pip3 install -r requirements.txt
 
-COPY ./onnx-yolo onnx-yolo
+#COPY ./onnx-yolo onnx-yolo
+COPY ./yolo yolo
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
