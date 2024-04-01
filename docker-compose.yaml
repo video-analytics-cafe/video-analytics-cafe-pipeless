@@ -1,42 +1,12 @@
 version: "3"
 
 services:
-  input:
+  stream:
     image: miguelaeh/pipeless:latest-tensorrt
-    command: ['run', 'input']
+    command: pipeless add stream --input-uri "file:///home/sedan/Projects/video-demo-cafe/demo-video-cafe.mp4" --output-uri "file:///app/output.mp4" --frame-path "onnx-yolo"
     volumes:
-      - '.:/app'
-    environment:
-      - PIPELESS_INPUT_ADDRESS_HOST=input
-      - PIPELESS_INPUT_ADDRESS_PORT=1234
-      - PIPELESS_OUTPUT_ADDRESS_HOST=output
-      - PIPELESS_OUTPUT_ADDRESS_PORT=1237
-      - PIPELESS_INPUT_VIDEO_URI=file:///home/sedan/Projects/video-demo-cafe/demo-video-cafe.mp4
-      - PIPELESS_OUTPUT_VIDEO_URI=file:///app/output.mp4
-    runtime: nvidia
-    devices:
-      - /dev/snd:/dev/snd
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              capabilities: [gpu]
-    stdin_open: true
-    tty: true
-
-  output:
-    image: miguelaeh/pipeless:latest-tensorrt
-    command: ['run', 'output']
-    volumes:
-      - '.:/app'
-    environment:
-      - PIPELESS_INPUT_ADDRESS_HOST=input
-      - PIPELESS_INPUT_ADDRESS_PORT=1234
-      - PIPELESS_OUTPUT_ADDRESS_HOST=output
-      - PIPELESS_OUTPUT_ADDRESS_PORT=1237
-      - PIPELESS_INPUT_VIDEO_URI=file:///home/sedan/Projects/video-demo-cafe/demo-video-cafe.mp4
-      - PIPELESS_OUTPUT_VIDEO_URI=file:///app/output.mp4
+      - 'onnx-yolo/:/app/onnx-yolo/'
+      - 'demo-video-cafe.mp4/:/app/demo-video-cafe.mp4'
     runtime: nvidia
     devices:
       - /dev/snd:/dev/snd
@@ -51,17 +21,9 @@ services:
 
   worker:
     image: miguelaeh/pipeless:latest-tensorrt
-    command: ['run', 'worker']
+    command: pipeless start --stages-dir .
     volumes:
-      - '.:/app'
-    environment:
-      - PIPELESS_INPUT_ADDRESS_HOST=input
-      - PIPELESS_INPUT_ADDRESS_PORT=1234
-      - PIPELESS_OUTPUT_ADDRESS_HOST=output
-      - PIPELESS_OUTPUT_ADDRESS_PORT=1237
-      - PIPELESS_INPUT_VIDEO_URI=file:///home/sedan/Projects/video-demo-cafe/demo-video-cafe.mp4
-      - PIPELESS_OUTPUT_VIDEO_URI=file:///app/output.mp4
-      - PIPELESS_USER_PYTHON_PACKAGES=opencv-python;numpy;ultralytics;norfair
+      - 'onnx-yolo/:/app/onnx-yolo/'
     runtime: nvidia
     devices:
       - /dev/snd:/dev/snd
