@@ -32,4 +32,10 @@ ENV PATH="${PATH}:/.local/bin/:/${HOME}/.pipeless/" \
 
 WORKDIR /app
 
+COPY ./requirements.txt requirements.txt
+
+RUN pip3 install -r requirements.txt
+
+COPY ./onnx-yolo onnx-yolo
+
 ENTRYPOINT ["/scripts/entrypoint.sh"]

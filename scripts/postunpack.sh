@@ -18,7 +18,7 @@ REQUIRED_DIRS=(
     # Create a folder to store the Python virtual environment. Created at runtime
     # to allow the user mount a volume and avoid packages installation on every
     # start
-    "/.venv"
+#    "/.venv"
 )
 
 for dir in "${REQUIRED_DIRS[@]}"; do
