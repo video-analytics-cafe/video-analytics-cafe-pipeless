@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     command: pipeless start --stages-dir .
+    ports:
+      - "8012:8000"
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - PIPELESS_INPUT_ADDRESS_HOST=worker
