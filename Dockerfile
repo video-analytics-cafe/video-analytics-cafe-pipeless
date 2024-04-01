@@ -23,8 +23,6 @@ COPY scripts /scripts
 
 RUN /scripts/postunpack.sh
 
-USER 1001
-
 RUN /scripts/install-nonroot.sh
 
 # Allow to execute commands installed with pip + add pipeless to the path
