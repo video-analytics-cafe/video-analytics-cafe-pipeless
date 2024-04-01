@@ -1,4 +1,4 @@
-FROM miguelaeh/pipeless:1.11.0-tensorrt
+FROM miguelaeh/pipeless-tensorrt
 #
 #WORKDIR /app
 #
