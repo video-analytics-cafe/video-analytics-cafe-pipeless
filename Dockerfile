@@ -1,4 +1,5 @@
-FROM nvcr.io/nvidia/tensorrt:22.12-py3
+#FROM nvcr.io/nvidia/tensorrt:22.12-py3
+FROM nvcr.io/nvidia/deepstream:6.4-gc-triton-devel
 
 COPY scripts/install_packages /usr/bin/install_packages
 
@@ -15,7 +16,7 @@ RUN install_packages \
     # Gstreamer deps
     libcairo2-dev libgirepository1.0-dev \
     # Python
-    python3-dev python3-pip python3-venv
+    python3-dev python3-pip python3-venv python3
 
 COPY scripts /scripts
 
