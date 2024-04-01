@@ -2,7 +2,9 @@ version: "3"
 
 services:
   stream:
-    image: miguelaeh/pipeless:latest-tensorrt
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: pipeless add stream --input-uri "file:///home/sedan/Projects/video-demo-cafe/demo-video-cafe.mp4" --output-uri "file:///app/output.mp4" --frame-path "onnx-yolo"
     volumes:
       - './onnx-yolo/:/app/onnx-yolo/'
@@ -20,7 +22,9 @@ services:
     tty: true
 
   worker:
-    image: miguelaeh/pipeless:latest-tensorrt
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: pipeless start --stages-dir .
     volumes:
       - './onnx-yolo/:/app/onnx-yolo/'
