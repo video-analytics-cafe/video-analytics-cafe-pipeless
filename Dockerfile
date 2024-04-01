@@ -34,6 +34,7 @@ ENV PATH="${PATH}:/.local/bin/:/${HOME}/.pipeless/" \
 
 WORKDIR /app
 ENV NVIDIA_DRIVER_CAPABILITIES video,compute,graphics,utility
+ENV NVIDIA_VISIBLE_DEVICES all
 ENV GST_DEBUG=3
 #ENV CUDA_VER=12.3
 ENV CUDA_VER=11.8
