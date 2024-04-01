@@ -31,6 +31,7 @@ ENV PATH="${PATH}:/.local/bin/:/${HOME}/.pipeless/" \
     GIT_PYTHON_REFRESH=quiet
 
 WORKDIR /app
+ENV NVIDIA_DRIVER_CAPABILITIES $NVIDIA_DRIVER_CAPABILITIES,video,compute,graphics,utility
 
 COPY ./requirements.txt requirements.txt
 
