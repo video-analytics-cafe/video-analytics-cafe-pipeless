@@ -23,9 +23,11 @@ COPY scripts /scripts
 
 RUN /scripts/postunpack.sh
 
-#USER 1001
+USER 1001
 
 RUN /scripts/install-nonroot.sh
+
+USER root
 
 # Allow to execute commands installed with pip + add pipeless to the path
 ENV PATH="${PATH}:/.local/bin/:/${HOME}/.pipeless/" \
