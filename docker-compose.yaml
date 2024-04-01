@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     command: pipeless start --stages-dir .
     environment:
+      - NVIDIA_VISIBLE_DEVICES=all
       - PIPELESS_INPUT_ADDRESS_HOST=worker
       - PIPELESS_INPUT_ADDRESS_PORT=3030
       - PIPELESS_OUTPUT_ADDRESS_HOST=stream
