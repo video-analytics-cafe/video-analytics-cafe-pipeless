@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     command: pipeless add stream --input-uri "file:///output/demo-video-cafe-output.mp4" --output-uri "file:///output/demo-video-cafe-output.mp4" --frame-path "onnx-yolo"
     volumes:
-      - './input/:/output/demo-video-cafe-output.mp4'
+      - './input/:/input/demo-video-cafe-output.mp4'
       - './output/:/output/demo-video-cafe-output.mp4'
     runtime: nvidia
     devices:
@@ -27,7 +27,7 @@ services:
       dockerfile: Dockerfile
     command: pipeless start --stages-dir .
     volumes:
-      - './input/:/output/demo-video-cafe-output.mp4'
+      - './input/:/input/demo-video-cafe-output.mp4'
       - './output/:/output/demo-video-cafe-output.mp4'
     runtime: nvidia
     devices:
