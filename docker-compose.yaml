@@ -30,6 +30,8 @@ services:
       context: .
       dockerfile: Dockerfile
     command: pipeless start --stages-dir .
+    ports:
+      - "3030:3030"
     volumes:
       - './input/:/input/demo-video-cafe-output.mp4'
       - './output/:/output/demo-video-cafe-output.mp4'
