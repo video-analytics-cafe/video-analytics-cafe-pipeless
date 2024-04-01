@@ -1,4 +1,5 @@
-FROM nvcr.io/nvidia/tensorrt:24.02-py3
+#FROM nvcr.io/nvidia/tensorrt:24.02-py3
+FROM nvcr.io/nvidia/tensorrt:22.12-py3
 #FROM nvcr.io/nvidia/deepstream:6.4-gc-triton-devel
 
 COPY scripts/install_packages /usr/bin/install_packages
@@ -34,7 +35,8 @@ ENV PATH="${PATH}:/.local/bin/:/${HOME}/.pipeless/" \
 WORKDIR /app
 ENV NVIDIA_DRIVER_CAPABILITIES $NVIDIA_DRIVER_CAPABILITIES,video,compute,graphics,utility
 ENV GST_DEBUG=3
-ENV CUDA_VER=12.3
+#ENV CUDA_VER=12.3
+ENV CUDA_VER=11.8
 ENV CUDA_HOME=/usr/local/cuda-${CUDA_VER}
 ENV CFLAGS="-I$CUDA_HOME/include $CFLAGS"
 ENV PATH=${CUDA_HOME}/bin:${PATH}
