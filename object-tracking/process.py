@@ -3,6 +3,7 @@
 from norfair import Detection, draw_points
 import numpy as np
 
+
 def hook(frame_data, context):
     tracker = context['tracker']
     frame = frame_data['modified']
@@ -11,6 +12,7 @@ def hook(frame_data, context):
     tracked_objects = tracker.update(detections=norfair_detections)
     draw_points(frame, drawables=tracked_objects)
     frame_data['modified'] = frame
+
 
 def yolo_to_norfair(bboxes, scores):
     norfair_detections = []
