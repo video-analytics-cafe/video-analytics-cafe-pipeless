@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: pipeless start --stages-dir . & pipeless add stream --input-uri "file:///output/demo-video-cafe-output.mp4" --output-uri "file:///output/demo-video-cafe-output.mp4" --frame-path "onnx-yolo"
+    command: pipeless start --stages-dir .
     environment:
       - PIPELESS_INPUT_ADDRESS_HOST=worker
       - PIPELESS_INPUT_ADDRESS_PORT=3030
