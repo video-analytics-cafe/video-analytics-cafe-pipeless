@@ -18,6 +18,17 @@ services:
       - PIPELESS_OUTPUT_ADDRESS_PORT=1237
       - PIPELESS_INPUT_VIDEO_URI=https://github.com/pipeless-ai/pipeless/raw/main/examples/cats/cats.mp4
       - PIPELESS_OUTPUT_VIDEO_URI=file:///app/output.mp4
+    runtime: nvidia
+    devices:
+      - /dev/snd:/dev/snd
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    stdin_open: true
+    tty: true
 
   output:
     image: miguelaeh/pipeless:latest
@@ -31,6 +42,17 @@ services:
       - PIPELESS_OUTPUT_ADDRESS_PORT=1237
       - PIPELESS_INPUT_VIDEO_URI=https://github.com/pipeless-ai/pipeless/raw/main/examples/cats/cats.mp4
       - PIPELESS_OUTPUT_VIDEO_URI=file:///app/output.mp4
+    runtime: nvidia
+    devices:
+      - /dev/snd:/dev/snd
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    stdin_open: true
+    tty: true
 
   worker:
     image: miguelaeh/pipeless:latest
@@ -45,3 +67,14 @@ services:
       - PIPELESS_INPUT_VIDEO_URI=https://github.com/pipeless-ai/pipeless/raw/main/examples/cats/cats.mp4
       - PIPELESS_OUTPUT_VIDEO_URI=file:///app/output.mp4
       - PIPELESS_USER_PYTHON_PACKAGES=opencv-python
+    runtime: nvidia
+    devices:
+      - /dev/snd:/dev/snd
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [ gpu ]
+    stdin_open: true
+    tty: true
