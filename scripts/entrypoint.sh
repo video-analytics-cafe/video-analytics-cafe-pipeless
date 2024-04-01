@@ -17,12 +17,12 @@ command="${1:-}"
 #. "/.venv/bin/activate"
 #pip3 install -r /app/requirements.txt
 
-#if [[ "$command" = "start" ]]; then
-#    pipeless_install_user_python_deps
-#fi
-#
-#if [[ "$command" = "pipeless" ]]; then
-#    exec "$@"
-#else
-#    exec pipeless "$@"
-#fi
+if [[ "$command" = "start" ]]; then
+    pipeless_install_user_python_deps
+fi
+
+if [[ "$command" = "pipeless" ]]; then
+    exec "$@"
+else
+    exec pipeless "$@"
+fi
