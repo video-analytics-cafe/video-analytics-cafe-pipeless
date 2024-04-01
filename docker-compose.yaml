@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     command: pipeless add stream --input-uri "file:///output/demo-video-cafe-output.mp4" --output-uri "file:///output/demo-video-cafe-output.mp4" --frame-path "onnx-yolo"
+    ports:
+       - "3030:3030"
     volumes:
       - './input/:/input/demo-video-cafe-output.mp4'
       - './output/:/output/demo-video-cafe-output.mp4'
@@ -20,6 +22,8 @@ services:
               capabilities: [gpu]
     stdin_open: true
     tty: true
+    networks:
+      - arch-network
 
   worker:
     build:
@@ -40,3 +44,9 @@ services:
               capabilities: [ gpu ]
     stdin_open: true
     tty: true
+    networks:
+      - arch-network
+
+networks:
+  arch-network:
+    driver: "bridge"
