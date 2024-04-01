@@ -1,5 +1,5 @@
-#FROM nvcr.io/nvidia/tensorrt:24.02-py3
-FROM nvcr.io/nvidia/tensorrt:22.12-py3
+FROM nvcr.io/nvidia/tensorrt:24.02-py3
+#FROM nvcr.io/nvidia/tensorrt:22.12-py3
 #FROM nvcr.io/nvidia/deepstream:6.4-gc-triton-devel
 
 COPY scripts/install_packages /usr/bin/install_packages
