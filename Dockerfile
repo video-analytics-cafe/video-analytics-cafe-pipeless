@@ -51,8 +51,8 @@ COPY ./requirements.txt requirements.txt
 
 RUN pip3 install -r requirements.txt
 
-COPY ./yolo yolo
-#COPY ./onnx-yolo onnx-yolo
+#COPY ./yolo yolo
+COPY ./onnx-yolo onnx-yolo
 COPY ./object-tracking object-tracking
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
