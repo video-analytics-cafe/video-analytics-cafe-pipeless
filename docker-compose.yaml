@@ -115,3 +115,7 @@ services:
 networks:
   arch-network:
     driver: "bridge"
+
+volumes:
+  kafka_volume1:
+  kafka_volume2:
