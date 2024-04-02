@@ -24,6 +24,7 @@ services:
       - kafka1
       - kafka2
       - consumer
+      - kafka-ui
 
   kafka1:
       image: 'bitnami/kafka:latest'
