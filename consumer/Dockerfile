@@ -15,4 +15,4 @@ COPY ./consumer.py ./consumer.py
 ENV PYTHONUNBUFFERED=1
 
 # Command to run the application
-CMD ["python3", "writer_app.py"]
+CMD ["python3", "consumer.py"]
