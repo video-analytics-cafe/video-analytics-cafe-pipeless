@@ -25,7 +25,7 @@ def hash_json(json_object: dict) -> bytes:
 
 
 def hook(frame_data, context):
-    kafka_producer = context['kafka-producer']
+    kafka_producer = context['kp']
     frame = frame_data['modified']
     user_data = frame_data['user_data']
     key_ = hash_json(user_data)
