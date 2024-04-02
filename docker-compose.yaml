@@ -10,10 +10,6 @@ services:
       - "8012:8000"
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
-      - PIPELESS_INPUT_ADDRESS_HOST=worker
-      - PIPELESS_INPUT_ADDRESS_PORT=3030
-      - PIPELESS_OUTPUT_ADDRESS_HOST=stream
-      - PIPELESS_OUTPUT_ADDRESS_PORT=3031
       - KAFKA_HOST=kafka1
       - KAFKA_PORT=9092
       - KAFKA_TOPIC=event_server
