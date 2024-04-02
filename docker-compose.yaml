@@ -96,22 +96,23 @@ services:
       networks:
         - arch-network
 
-#  consumer:
-#    build:
+  consumer:
+    build:
 #      context: consumer
-#      dockerfile: Dockerfile
-#    container_name: consumer
-#    restart: always
-#    environment:
-#      - KAFKA_HOST=kafka1
-#      - KAFKA_PORT=9092
-#      - KAFKA_TOPIC=event_server
-#      - KAFKA_GROUP_ID=0
-#    networks:
-#      - arch-network
-#    depends_on:
-#      - kafka1
-#      - kafka2
+      context: consumer-java
+      dockerfile: Dockerfile
+    container_name: consumer
+    restart: always
+    environment:
+      - KAFKA_HOST=kafka1
+      - KAFKA_PORT=9092
+      - KAFKA_TOPIC=event_server
+      - KAFKA_GROUP_ID=0
+    networks:
+      - arch-network
+    depends_on:
+      - kafka1
+      - kafka2
 
 networks:
   arch-network:
