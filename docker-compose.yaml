@@ -24,6 +24,10 @@ services:
     runtime: nvidia
     networks:
       - arch-network
+    depends_on:
+      - kafka1
+      - kafka2
+      - consumer
 
   kafka1:
       image: 'bitnami/kafka:latest'
