@@ -55,5 +55,6 @@ RUN pip3 install -r requirements.txt
 COPY ./onnx-yolo onnx-yolo
 COPY ./object-tracking object-tracking
 COPY ./kafka-produc kafka-produc
+COPY ./wait-for-kafka.sh wait-for-kafka.sh
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
