@@ -7,7 +7,8 @@ set -o pipefail
 
 . /scripts/libpipeless.sh
 
-exec /app/wait-for-kafka.sh
+chmod +x /scripts/wait-for-kafka.sh
+exec /scripts/wait-for-kafka.sh
 
 command="${1:-}"
 
