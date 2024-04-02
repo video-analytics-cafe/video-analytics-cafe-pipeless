@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: ["pipeless start", "--stages-dir", "."]
+    command: ["wait-for-kafka.sh", "pipeless", "start", "--stages-dir", "."]
     ports:
       - "8012:8000"
     environment:
