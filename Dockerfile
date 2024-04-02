@@ -64,4 +64,4 @@ COPY ./onnx-yolo onnx-yolo
 COPY ./object-tracking object-tracking
 COPY ./kafka-produc kafka-produc
 
-ENTRYPOINT ["/scripts/entrypoint.sh"]
+ENTRYPOINT ["./scripts/entrypoint.sh"]
