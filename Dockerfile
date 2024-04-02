@@ -6,7 +6,7 @@ COPY scripts/install_packages /usr/bin/install_packages
 
 # Install required pacakges
 RUN install_packages \
-    wget ca-certificates curl git \
+    wget ca-certificates curl git netcat \
     # Gstreamer
     libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
     libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base \
