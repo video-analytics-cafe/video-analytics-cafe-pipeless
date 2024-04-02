@@ -7,6 +7,8 @@ set -o pipefail
 
 . /scripts/libpipeless.sh
 
+exec /app/wait-for-kafka.sh
+
 command="${1:-}"
 
 # Setup Python virtual environment
