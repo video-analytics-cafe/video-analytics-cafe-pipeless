@@ -26,3 +26,4 @@ command="${1:-}"
 #else
 #    exec pipeless "$@"
 #fi
+exec "$@"
