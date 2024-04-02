@@ -16,7 +16,7 @@ def hook(frame_data, _):
         frame_data['user_data'] = {
             "bboxes": boxes,
             "scores": scores,
-            "labels":class_labels,
+            "labels": class_labels,
         }
 
         frame_data['modified'] = frame
