@@ -8,6 +8,7 @@ services:
     command: ["pipeless", "start", "--stages-dir", "."]
     ports:
       - "8012:8000"
+      - "3030:3030"
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - KAFKA_HOST=kafka1
