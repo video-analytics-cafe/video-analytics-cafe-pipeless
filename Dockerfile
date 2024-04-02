@@ -19,12 +19,15 @@ RUN install_packages \
     # Python
     python3-dev python3-pip python3-venv python3
 
-COPY scripts /scripts
+COPY ./scripts/libcargo.sh /scripts/libcargo.sh
+COPY ./scripts/libpipeless.sh /scripts/libpipeless.sh
 
+COPY ./scripts/postunpack.sh /scripts/postunpack.sh
 RUN /scripts/postunpack.sh
 
 USER 1001
 
+COPY ./scripts/install-nonroot.sh /scripts/install-nonroot.sh
 RUN /scripts/install-nonroot.sh
 
 USER root
@@ -34,7 +37,7 @@ ENV PATH="${PATH}:/.local/bin/:/${HOME}/.pipeless/" \
     LD_LIBRARY_PATH="${HOME}/.pipeless/:${LD_LIBRARY_PATH}" \
     GIT_PYTHON_REFRESH=quiet
 
-WORKDIR /app
+
 ENV NVIDIA_DRIVER_CAPABILITIES video,compute,graphics,utility
 ENV NVIDIA_VISIBLE_DEVICES all
 #ENV NVIDIA_VISIBLE_DEVICES nvidia.com/gpu=all
@@ -47,14 +50,17 @@ ENV GST_DEBUG=3
 #ENV LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
 #ENV LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH
 
-COPY ./requirements.txt requirements.txt
+COPY ./requirements.txt ./requirements.txt
 
 RUN pip3 install -r requirements.txt
 
+WORKDIR /app
 #COPY ./yolo yolo
 COPY ./onnx-yolo onnx-yolo
 COPY ./object-tracking object-tracking
 COPY ./kafka-produc kafka-produc
+
+COPY ./scripts/entrypoint.sh entrypoint.sh
 COPY ./wait-for-kafka.sh wait-for-kafka.sh
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
