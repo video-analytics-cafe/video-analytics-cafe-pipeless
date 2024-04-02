@@ -21,8 +21,8 @@ command="${1:-}"
 #    pipeless_install_user_python_deps
 #fi
 
-if [[ "$command" = "pipeless" ]]; then
-    exec "$@"
-else
-    exec pipeless "$@"
-fi
+#if [[ "$command" = "pipeless" ]]; then
+#    exec "$@"
+#else
+#    exec pipeless "$@"
+#fi
