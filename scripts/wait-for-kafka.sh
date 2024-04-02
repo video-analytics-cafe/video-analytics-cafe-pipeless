@@ -9,5 +9,5 @@ done
 echo "Kafka is up, waiting an additional 10 seconds..."
 sleep 10
 
-# Execute the original command
-exec "$@"
+## Execute the original command
+#exec "$@"
