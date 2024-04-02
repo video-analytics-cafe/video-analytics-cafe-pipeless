@@ -23,7 +23,7 @@ services:
     depends_on:
       - kafka1
       - kafka2
-      - consumer
+#      - consumer
       - kafka-ui
 
   kafka1:
