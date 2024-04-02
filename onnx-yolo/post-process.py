@@ -13,9 +13,12 @@ def hook(frame_data, _):
             draw_bbox(frame, boxes[i], class_labels[i], scores[i], color_palette[class_ids[i]])
 
         # Add the predictions to the frame user_data in order to recover it frm other stages
+        print(boxes.tolist())
+        print(scores.tolist())
+        print(class_labels)
         frame_data['user_data'] = {
-            "bboxes": boxes,
-            "scores": scores,
+            "bboxes": boxes.tolist(),
+            "scores": scores.tolist(),
             "labels": class_labels,
         }
 
