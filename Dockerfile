@@ -54,10 +54,8 @@ COPY ./requirements.txt ./requirements.txt
 
 RUN pip3 install -r requirements.txt
 
-
-COPY ./scripts/wait-for-kafka.sh ./scripts/wait-for-kafka.sh
-
 WORKDIR /app
+COPY ./scripts/wait-for-kafka.sh scripts/wait-for-kafka.sh
 COPY ./scripts/entrypoint.sh scripts/entrypoint.sh
 
 #COPY ./yolo yolo
