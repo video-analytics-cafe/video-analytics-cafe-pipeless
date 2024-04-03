@@ -1,0 +1,1 @@
+curl -X DELETE http://127.0.0.1:3033/streams/d7d0dd4e-6bee-4c18-8936-22b15ba8ba87
