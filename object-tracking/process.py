@@ -12,6 +12,24 @@ def hook(frame_data, context):
     tracked_objects = tracker.update(detections=norfair_detections)
     draw_points(frame, drawables=tracked_objects)
     frame_data['modified'] = frame
+    bboxes, scores, labels, obj_track_ids = get_user_data_from_tracker(tracked_objects)
+    frame_data['user_data'] = {
+        "bboxes": bboxes,
+        "scores": scores,
+        "labels": labels,
+        "obj_track_ids": obj_track_ids
+    }
+
+
+def get_user_data_from_tracker(tracked_objects):
+    bboxes, scores, labels, obj_track_ids = [], [], [], []
+
+    for obj in tracked_objects:
+        bboxes.append(obj.last_detection.points.squeeze().tolist())
+        scores.append(float(obj.last_detection.scores[0]))
+        labels.append(obj.last_detection.labels)
+        obj_track_ids.append(obj.id)
+    return bboxes, scores, labels, obj_track_ids
 
 
 def yolo_to_norfair(bboxes, scores):
