@@ -27,7 +27,7 @@ def get_user_data_from_tracker(tracked_objects):
     for obj in tracked_objects:
         bboxes.append(obj.last_detection.points.squeeze().tolist())
         scores.append(float(obj.last_detection.scores[0]))
-        labels.append(obj.last_detection.labels)
+        labels.append(obj.last_detection.label)
         obj_track_ids.append(obj.id)
     return bboxes, scores, labels, obj_track_ids
 
