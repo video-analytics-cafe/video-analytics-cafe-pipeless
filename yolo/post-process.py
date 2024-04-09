@@ -8,6 +8,7 @@ def hook(frame_data, _):
         x1, y1, x2, y2, score, class_number = box
         box_label(frame, [x1, y1, x2, y2], yolo_classes[int(class_number)], score, (255, 0, 255))
 
+    print(f"bboxes.tolist(): {bboxes.tolist()}")
     bboxes = bboxes.tolist()
     # Add the predictions to the frame user_data in order to recover it frm other stages
     frame_data['user_data'] = {
