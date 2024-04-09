@@ -16,8 +16,8 @@ def hook(frame_data, _):
         # print(boxes.tolist())
         # print(scores.tolist())
         # print(class_labels)
-        print(f"boxes.tolist(): {boxes}")
-        print(f"scores.tolist(): {scores}")
+        print(f"boxes.tolist(): {type(boxes)}")
+        print(f"scores.tolist(): {type(scores)}")
         frame_data['user_data'] = {
             "bboxes": boxes.tolist(),
             "scores": scores.tolist(),
