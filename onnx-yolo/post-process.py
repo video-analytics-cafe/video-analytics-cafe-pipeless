@@ -16,11 +16,16 @@ def hook(frame_data, _):
         # print(boxes.tolist())
         # print(scores.tolist())
         # print(class_labels)
-        print(f"boxes.tolist(): {type(boxes)}")
-        print(f"scores.tolist(): {type(scores)}")
+        # print(f"boxes.tolist(): {type(boxes)}")
+        # print(f"scores.tolist(): {type(scores)}")
+        if isinstance(boxes, np.ndarray):
+            boxes = boxes.tolist()
+        if isinstance(scores, np.ndarray):
+            scores = scores.tolist()
+
         frame_data['user_data'] = {
-            "bboxes": boxes.tolist(),
-            "scores": scores.tolist(),
+            "bboxes": boxes,
+            "scores": scores,
             "labels": class_labels,
         }
 

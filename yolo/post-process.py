@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 
 def hook(frame_data, _):
@@ -9,7 +10,8 @@ def hook(frame_data, _):
         box_label(frame, [x1, y1, x2, y2], yolo_classes[int(class_number)], score, (255, 0, 255))
 
     print(f"bboxes.tolist(): {type(bboxes)}")
-    bboxes = bboxes.tolist()
+    if isinstance(bboxes, np.ndarray):
+        bboxes = bboxes.tolist()
     # Add the predictions to the frame user_data in order to recover it frm other stages
     frame_data['user_data'] = {
         "bboxes": [bbox[:4] for bbox in bboxes],
