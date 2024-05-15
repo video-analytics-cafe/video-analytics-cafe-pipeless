@@ -17,8 +17,7 @@ services:
       - KAFKA_GROUP_ID=0
       - DISPLAY=:1
     volumes:
-      - './input/:/input/'
-      - './output/:/output/'
+      - './data/:/data/'
       - /tmp/.X11-unix/:/tmp/.X11-unix
     runtime: nvidia
     networks:
@@ -128,6 +127,13 @@ services:
       - pgadmin-data:/var/lib/pgadmin
     depends_on:
       - postgres
+  node-http-server:
+    image: node:14
+    volumes:
+      - './data/:/data/'
+    command: sh -c "npm install -g http-server && http-server ./data -p 6712"
+    ports:
+      - "6712:6712"
 #  consumer:
 #    build:
 ##      context: consumer

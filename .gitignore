@@ -1,5 +1,5 @@
-/input
-/output
+/data/input
+/data/output
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
