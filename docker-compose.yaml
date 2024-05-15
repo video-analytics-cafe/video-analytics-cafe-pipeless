@@ -61,10 +61,10 @@ services:
   kafka2:
       image: 'bitnami/kafka:latest'
       container_name: kafka2
-      # ports:
+      ports:
       #   - "2181:2181"
       #   - "9092:9092"
-      #   - "9093:9093"
+         - "9093:9093"
       environment:
         KAFKA_ENABLE_KRAFT: "yes"
         KAFKA_CFG_PROCESS_ROLES: "broker,controller"
