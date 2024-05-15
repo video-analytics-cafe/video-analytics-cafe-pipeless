@@ -1,5 +1,5 @@
-PORT=9092
-FILENAME_LOG=log_ngrok.log
+#PORT=9092
+#FILENAME_LOG=log_ngrok.log
 # Kill any process using port 5000
 #PID=$(lsof -ti:$PORT)
 #if [ ! -z "$PID" ]; then
