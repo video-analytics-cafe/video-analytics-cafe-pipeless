@@ -19,4 +19,4 @@ RUN wget https://dlcdn.apache.org/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAF
     ln -s /opt/kafka_$SCALA_VERSION-$KAFKA_VERSION $KAFKA_HOME && \
     rm /tmp/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz
 
-CMD ["sh", "-c", "/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server ${KAFKA_HOST}:${KAFKA_PORT} --topic ${KAFKA_TOPIC} --from-beginning"]
+CMD ["sh", "-c", "/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server ${KAFKA_BROKER_URL} --topic ${KAFKA_TOPIC} --from-beginning"]

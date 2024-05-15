@@ -15,9 +15,10 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Kafka configuration
-KAFKA_HOST = os.getenv("KAFKA_HOST", "localhost")
-KAFKA_PORT = os.getenv("KAFKA_PORT", "9092")
-KAFKA_BROKER_URL = f"{KAFKA_HOST}:{KAFKA_PORT}"
+# KAFKA_HOST = os.getenv("KAFKA_HOST", "localhost")
+# KAFKA_PORT = os.getenv("KAFKA_PORT", "9092")
+# KAFKA_BROKER_URL = f"{KAFKA_HOST}:{KAFKA_PORT}"
+KAFKA_BROKER_URL = os.getenv("KAFKA_BROKER_URL", "localhost:9092")
 
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "event_server")
 KAFKA_GROUP_ID = os.getenv("KAFKA_GROUP_ID")
