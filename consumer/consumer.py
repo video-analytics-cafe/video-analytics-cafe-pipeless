@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 KAFKA_BROKER_URL = os.getenv("KAFKA_BROKER_URL", "localhost:9092")
 
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "event_server")
-KAFKA_GROUP_ID = os.getenv("KAFKA_GROUP_ID", 0)
+KAFKA_GROUP_ID = os.getenv("KAFKA_GROUP_ID", "0")
 
 # Kafka Consumer Setup using kafka-python
 consumer = KafkaConsumer(
