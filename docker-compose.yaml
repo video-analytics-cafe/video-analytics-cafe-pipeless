@@ -154,3 +154,4 @@ networks:
 volumes:
   kafka_volume1:
   kafka_volume2:
+  pgadmin-data:
