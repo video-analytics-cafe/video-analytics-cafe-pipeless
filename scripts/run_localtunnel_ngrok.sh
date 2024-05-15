@@ -8,11 +8,11 @@ PORT=9092
 #fi
 
 
-NGROK_PID=$(pgrep ngrok)
-if [ ! -z "$NGROK_PID" ]; then
-  echo "Killing existing ngrok processes: $NGROK_PID..."
-  kill  $NGROK_PID
-fi
+#NGROK_PID=$(pgrep ngrok)
+#if [ ! -z "$NGROK_PID" ]; then
+#  echo "Killing existing ngrok processes: $NGROK_PID..."
+#  kill  $NGROK_PID
+#fi
 
 # Wait a bit to ensure the processes have been terminated
 sleep 2
