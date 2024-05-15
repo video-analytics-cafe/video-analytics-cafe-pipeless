@@ -1,5 +1,5 @@
 PORT=9092
-
+FILENAME_LOG=log_ngrok.log
 # Kill any process using port 5000
 #PID=$(lsof -ti:$PORT)
 #if [ ! -z "$PID" ]; then
@@ -18,7 +18,7 @@ PORT=9092
 sleep 2
 
 # run ngrok in the background
-nohup ngrok http $PORT --response-header-add "Access-Control-Allow-Origin: *" --log=stdout > log_ngrok_pipeless.log 2>&1&
+nohup ngrok http $PORT --response-header-add "Access-Control-Allow-Origin: *" --log=stdout > $FILENAME_LOG 2>&1&
 
 sleep 4
 
