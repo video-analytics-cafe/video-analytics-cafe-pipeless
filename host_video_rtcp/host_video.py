@@ -18,6 +18,7 @@ class TestRtspMediaFactory(GstRtspServer.RTSPMediaFactory):
     def do_create_element(self, url):
         # set mp4 file path to filesrc's location property
         path2mp4 = os.getenv("PATH2MP4")
+        print(f"path2mp4: {path2mp4}")
         src_demux = f"filesrc location={path2mp4} ! qtdemux name=demux"
         h264_transcode = "demux.video_0"
         # uncomment following line if video transcoding is necessary
