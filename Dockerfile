@@ -13,9 +13,9 @@ RUN install_packages \
     gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools \
     gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 \
-    gstreamer1.0-qt5 gstreamer1.0-pulseaudio gstreamer1.0-rtsp \
+    gstreamer1.0-qt5 gstreamer1.0-pulseaudio gstreamer1.0-rtsp gir1.2-gst-rtsp-server-1.0 \
     # Gstreamer deps
-    libcairo2-dev libgirepository1.0-dev \
+    libcairo2-dev libgirepository1.0-dev libgstrtspserver-1.0-dev \
     # Python
     python3-dev python3-pip python3-venv python3
 
