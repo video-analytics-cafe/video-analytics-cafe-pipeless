@@ -134,6 +134,24 @@ services:
     command: sh -c "npm install -g http-server && http-server ./data -p 6712"
     ports:
       - "6712:6712"
+  rtsp-server:
+    container_name: 'rtsp-server'
+    build:
+      context: host_video_rtcp
+      dockerfile: Dockerfile
+    command: bash -c "python host_video.py"
+    networks:
+      - arch-network
+    volumes:
+      - './data/:/data/'
+    environment:
+      - MP4_FILENAME=/data/input/demo-video-cafe.mp4
+      - DST_STREAM=stream1
+    ports:
+      - "8554:8554"
+    tty: true
+    stdin_open: true
+    privileged: true
   consumer:
     build:
       context: consumer

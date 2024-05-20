@@ -1,6 +1,6 @@
 #!/usr/bin/env python
+
 import os
-import sys
 import gi
 
 gi.require_version('Gst', '1.0')
@@ -17,9 +17,7 @@ class TestRtspMediaFactory(GstRtspServer.RTSPMediaFactory):
 
     def do_create_element(self, url):
         # set mp4 file path to filesrc's location property
-        path2mp4 = os.getenv("PATH2MP4")
-        print(f"path2mp4: {path2mp4}")
-        src_demux = f"filesrc location={path2mp4} ! qtdemux name=demux"
+        src_demux = f"filesrc location={src_file} ! qtdemux name=demux"
         h264_transcode = "demux.video_0"
         # uncomment following line if video transcoding is necessary
         # h264_transcode = "demux.video_0 ! decodebin ! queue ! x264enc"
@@ -34,10 +32,12 @@ class GstreamerRtspServer():
         factory = TestRtspMediaFactory()
         factory.set_shared(True)
         mountPoints = self.rtspServer.get_mount_points()
-        mountPoints.add_factory("/stream1", factory)
+        mountPoints.add_factory('/{}'.format(dst_stream), factory)
         self.rtspServer.attach(None)
 
 
 if __name__ == '__main__':
+    src_file = os.environ['MP4_FILENAME']
+    dst_stream = os.environ['DST_STREAM']
     s = GstreamerRtspServer()
     loop.run()
