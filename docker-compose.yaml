@@ -134,24 +134,24 @@ services:
     command: sh -c "npm install -g http-server && http-server ./data -p 6712"
     ports:
       - "6712:6712"
-#  consumer:
-#    build:
-##      context: consumer
+  consumer:
+    build:
+      context: consumer
 #      context: consumer-java
-#      dockerfile: Dockerfile
-#    container_name: consumer
-#    restart: always
-#    environment:
-##      - KAFKA_HOST=kafka1
-##      - KAFKA_PORT=9092
-#      - KAFKA_BROKER_URL=kafka1:9092
-#      - KAFKA_TOPIC=event_server
-#      - KAFKA_GROUP_ID=0
-#    networks:
-#      - arch-network
-#    depends_on:
-#      - kafka1
-#      - kafka2
+      dockerfile: Dockerfile
+    container_name: consumer
+    restart: always
+    environment:
+      - KAFKA_HOST=kafka1
+      - KAFKA_PORT=9092
+      - KAFKA_BROKER_URL=kafka1:9092
+      - KAFKA_TOPIC=event_server
+      - KAFKA_GROUP_ID=0
+    networks:
+      - arch-network
+    depends_on:
+      - kafka1
+      - kafka2
 
 networks:
   arch-network:
