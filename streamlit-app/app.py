@@ -1,3 +1,5 @@
+import json
+import logging
 import os
 
 import altair as alt
@@ -5,7 +7,25 @@ import pandas as pd
 
 # pip install psycopg2
 import psycopg2
+import requests
 import streamlit as st
+
+ENDPOINT_PROCESS_PIPELESS = "http://stream:3030/streams"
+REQUEST_DATA = {
+    "input_uri": "file:///data/input/demo-video-cafe.mp4",
+    "output_uri": "file:///data/output/demo-video-cafe.mp4",
+    "frame_path": ["onnx-yolo", "object-tracking", "kafka-produc"],
+    "restart_policy": "always",
+}
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+
+logger = logging.getLogger(__name__)
+
 
 # Set page configuration
 st.set_page_config(page_title="Coffee Shop Visitor Tracker", layout="wide")
@@ -52,6 +72,26 @@ def run_query(query):
 
 
 st.title("Coffee Shop Visitor Tracker")
+
+
+def send_request(data, endpoint: str = ENDPOINT_PROCESS_PIPELESS):
+    response = requests.post(endpoint, json=data)
+    if response.status_code == 200:
+        logger.info(
+            f"Sent request to {endpoint}: {json.dumps(response.json(), indent=2)}"
+        )
+    else:
+        logger.error(
+            f"Error: Unable to send request to {endpoint}, "
+            f"status code {response.status_code}; {json.dumps(response.json())}"
+        )
+
+
+st.button(
+    "Start Video Stream",
+    on_click=lambda _: send_request(data=REQUEST_DATA),
+    # on_click=on_create_quizzes_test,
+)
 
 rows = run_query("select *, msg_datetime::date visit_date from logs")
 if len(rows) != 0:
