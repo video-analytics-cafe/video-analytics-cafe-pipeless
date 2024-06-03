@@ -1,6 +1,25 @@
 version: "3.9"
 
 services:
+  streamlit:
+    build:
+      context: streamlit-app
+      dockerfile: Dockerfile
+    networks:
+      - arch-network
+    ports:
+      - '8501:8501'
+    volumes:
+      - './data:/usr/src/app/data:delegated'
+      - './project:/usr/src/app/project:delegated'
+    environment:
+      - USER_ID=1000
+      - GROUP_ID=1000
+      - POSTGRES_DBNAME={POSTGRES_DBNAME:-postgres}
+      - POSTGRES_USER={POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD={POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_HOST={POSTGRES_HOST:-postgres}
+      - POSTGRES_PORT={POSTGRES_PORT:-5432}
   stream:
     build:
       context: .
