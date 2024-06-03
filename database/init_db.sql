@@ -1,8 +1,8 @@
-SELECT 'CREATE DATABASE postgres'
-WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'postgres')\gexec
-\c mydb
--- CREATE DATABASE IF not EXISTS EXISTS;
--- USE logs_db;
+-- Create database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS postgres;
+
+-- Switch to the created database
+\c postgres;
 
 
 CREATE TABLE IF NOT EXISTS logs (
