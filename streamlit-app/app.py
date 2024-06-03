@@ -2,6 +2,7 @@ import os
 
 import altair as alt
 import pandas as pd
+
 # pip install psycopg2
 import psycopg2
 import streamlit as st
@@ -25,30 +26,7 @@ def init_connection():
 
 conn = init_connection()
 
-
-# Perform query.
-# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-@st.cache_data(ttl=600)
-def run_query(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        output = cur.fetchall()
-        st.markdown(f"""
-        ```
-        output: {output}
-        ```
-        """)
-        st.markdown(f"""
-        ```
-        type(output): {type(output)}
-        ```
-        """)
-        return cur.fetchall()
-
-
-rows = run_query("select *, msg_datetime::date visit_date from logs")
-data = pd.DataFrame(rows)
-data.columns = [
+columns = [
     "ids",
     "msg_datetime",
     "obj_track_id",
@@ -61,6 +39,37 @@ data.columns = [
     "created_at",
     "visit_date",
 ]
+
+
+# Perform query.
+# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
+@st.cache_data(ttl=600)
+def run_query(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        output = cur.fetchall()
+        st.markdown(
+            f"""
+        ```
+        output: {output}
+        ```
+        """
+        )
+        st.markdown(
+            f"""
+        ```
+        type(output): {type(output)}
+        ```
+        """
+        )
+        if len(output) == 0:
+            output = [[] for _ in range(len(columns))]
+        return output
+
+
+rows = run_query("select *, msg_datetime::date visit_date from logs")
+data = pd.DataFrame(rows)
+data.columns = columns
 
 # Create the dashboard
 st.title("Coffee Shop Visitor Tracker")
