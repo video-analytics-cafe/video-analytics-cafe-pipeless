@@ -90,7 +90,7 @@ def send_request(data, endpoint: str = ENDPOINT_PROCESS_PIPELESS):
 def start_video_stream():
     try:
         send_request(data=REQUEST_DATA)
-    except ConnectionError as e:
+    except Exception as e:
         st.warning("Service is still starting...")
         logger.exception(e)
 
