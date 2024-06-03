@@ -32,6 +32,9 @@ conn = init_connection()
 def run_query(query):
     with conn.cursor() as cur:
         cur.execute(query)
+        output = cur.fetchall()
+        print(f"output: {output}")
+        print(f"type(output): {type(output)}")
         return cur.fetchall()
 
 
