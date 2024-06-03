@@ -10,8 +10,8 @@ services:
     ports:
       - '8501:8501'
     volumes:
-      - './data:/usr/src/app/data:delegated'
-      - './project:/usr/src/app/project:delegated'
+      - 'streamlit-data:/usr/src/app/data:delegated'
+      - 'streamlit-data:/usr/src/app/project:delegated'
     environment:
       - USER_ID=1000
       - GROUP_ID=1000
@@ -209,4 +209,5 @@ volumes:
   kafka_volume1:
   kafka_volume2:
   pgadmin-data: 
-  postgres-data: 
+  postgres-data:
+  streamlit-data:
