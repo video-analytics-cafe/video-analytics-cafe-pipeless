@@ -194,7 +194,7 @@ st.button(
     # on_click=on_create_quizzes_test,
 )
 st.button(
-    "Update Data",
+    "Update Statistics",
     on_click=refresh_data,
     # on_click=on_create_quizzes_test,
 )
