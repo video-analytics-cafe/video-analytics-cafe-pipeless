@@ -54,9 +54,9 @@ class Logs(Base):
     created_at = Column(TIMESTAMP(timezone=True))
 
 
-# Create the database if it does not exist
-if not engine.dialect.has_schema(engine, DB_DATABASE):
-    engine.execute(CreateSchema(DB_DATABASE))
+# # Create the database if it does not exist
+# if not engine.dialect.has_schema(engine, DB_DATABASE):
+#     engine.execute(CreateSchema(DB_DATABASE))
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
