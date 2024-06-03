@@ -63,7 +63,7 @@ def run_query(query):
         """
         )
         if len(output) == 0:
-            output = [[] for _ in range(len(columns))]
+            output = [[None for _ in range(len(columns))]]
         return output
 
 
