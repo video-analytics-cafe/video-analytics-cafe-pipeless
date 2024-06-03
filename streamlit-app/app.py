@@ -33,8 +33,16 @@ def run_query(query):
     with conn.cursor() as cur:
         cur.execute(query)
         output = cur.fetchall()
-        print(f"output: {output}")
-        print(f"type(output): {type(output)}")
+        st.markdown(f"""
+        ```
+        output: {output}
+        ```
+        """)
+        st.markdown(f"""
+        ```
+        type(output): {type(output)}
+        ```
+        """)
         return cur.fetchall()
 
 
