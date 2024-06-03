@@ -34,11 +34,11 @@ services:
       - KAFKA_PORT=9092
       - KAFKA_TOPIC=event_server
       - KAFKA_GROUP_ID=0
-      - DISPLAY=:1
+      - DISPLAY=:0
     volumes:
       - './data/:/data/'
       - /tmp/.X11-unix/:/tmp/.X11-unix
-    runtime: nvidia
+    # runtime: nvidia
     networks:
       - arch-network
     depends_on:
@@ -117,18 +117,19 @@ services:
       networks:
         - arch-network
   postgres:
-    image: postgres:14-alpine
+    image: postgres:14-alpine # postgres:16.3-alpine3.20
     networks:
       - arch-network
     ports:
       - 5432:5432
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - ./database/data:/var/lib/postgresql/data
+      - ./database/init_db.sql:/docker-entrypoint-initdb.d/init.sql
     #      - ./src/car_db/init_table.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
-      - POSTGRES_DB=${POSTGRES_DB:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-mydb}
       - TZ=${TZ:-Europe/Luxembourg}
   pgadmin:
     container_name: pgadmin
@@ -164,7 +165,7 @@ services:
     volumes:
       - './data/:/data/'
     environment:
-      - MP4_FILENAME=/data/input/demo-video-cafe.mp4
+      - MP4_FILENAME=/data/input/demo-video-cafe.mp4 # local mp4 path
       - DST_STREAM=stream1
     ports:
       - "8554:8554"
@@ -189,6 +190,8 @@ services:
     depends_on:
       - kafka1
       - kafka2
+    # volumes:
+      # - ./consumer_logs:/app
 
 networks:
   arch-network:
@@ -197,5 +200,5 @@ networks:
 volumes:
   kafka_volume1:
   kafka_volume2:
-  pgadmin-data:
-  postgres-data:
+  pgadmin-data: 
+  postgres-data: 
