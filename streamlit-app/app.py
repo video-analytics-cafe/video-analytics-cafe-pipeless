@@ -87,9 +87,13 @@ def send_request(data, endpoint: str = ENDPOINT_PROCESS_PIPELESS):
         )
 
 
+def start_video_stream():
+    send_request(data=REQUEST_DATA)
+
+
 st.button(
     "Start Video Stream",
-    on_click=lambda _: send_request(data=REQUEST_DATA),
+    on_click=start_video_stream,
     # on_click=on_create_quizzes_test,
 )
 
