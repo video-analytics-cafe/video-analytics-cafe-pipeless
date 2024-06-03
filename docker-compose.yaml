@@ -185,6 +185,11 @@ services:
       - KAFKA_BROKER_URL=kafka1:9092
       - KAFKA_TOPIC=event_server
       - KAFKA_GROUP_ID=0
+      - DB_DATABASE=${DB_DATABASE:-postgres}
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-postgres}
+      - DB_HOST=${DB_HOST:-postgres}
+      - DB_PORT=${DB_PORT:-5432}
     networks:
       - arch-network
     depends_on:
