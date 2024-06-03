@@ -51,14 +51,14 @@ def run_query(query):
         return output
 
 
+st.title("Coffee Shop Visitor Tracker")
+
 rows = run_query("select *, msg_datetime::date visit_date from logs")
 if len(rows) != 0:
     data = pd.DataFrame(rows)
     data.columns = columns
 
     # Create the dashboard
-    st.title("Coffee Shop Visitor Tracker")
-
     # Create a big number counter for new visitors
     st.subheader("Today Visitors")
     today_visitors = pd.DataFrame(
@@ -137,3 +137,5 @@ if len(rows) != 0:
     # # Print results.
     # for row in df.itertuples():
     #     st.write(f"{row.name} has a :{row.pet}:")
+else:
+    st.subheader("Today Visitors is Noboady. Waiting....")
