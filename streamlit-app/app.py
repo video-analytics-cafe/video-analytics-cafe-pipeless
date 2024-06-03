@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 
 # Set page configuration
-st.set_page_config(page_title="Coffee Shop Visitor Tracker", layout="wide")
+st.set_page_config(page_title="Coffee Shop Visitor Tracker", layout="wide", page_icon="📸",)
 
 
 # Initialize connection.
