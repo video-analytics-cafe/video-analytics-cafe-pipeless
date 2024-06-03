@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     networks:
       - arch-network
+    restart: always
     ports:
       - '8501:8501'
     volumes:
