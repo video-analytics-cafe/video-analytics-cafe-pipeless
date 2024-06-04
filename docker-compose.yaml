@@ -30,6 +30,7 @@ services:
       - "8012:8000"
       - "3030:3030"
     environment:
+      - XDG_RUNTIME_DIR=/run/user/1000
       - NVIDIA_VISIBLE_DEVICES=all
       - KAFKA_HOST=kafka1
       - KAFKA_PORT=9092
