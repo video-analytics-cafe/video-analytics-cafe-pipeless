@@ -35,7 +35,7 @@ services:
       - KAFKA_PORT=9092
       - KAFKA_TOPIC=event_server
       - KAFKA_GROUP_ID=0
-      - DISPLAY=:0
+      - DISPLAY=:1
     volumes:
       - './data/:/data/'
       - /tmp/.X11-unix/:/tmp/.X11-unix
